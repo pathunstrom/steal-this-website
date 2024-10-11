@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <!-- Using a style element cause it shares easier. All of this can live in linked stylesheets. -->
+  <style>
+    /*
+    Some folks would argue that using body as your root container, if it bothers you, just add an
+    <div class="content"> as the root element in the body and put everything else inside of it. If you do replace
+    the body rule with one for #content
+     */
+
+    body {
+      display: grid;
+      grid-template:
+                /*
+                The left hand side of this is the "grid areas" which is telling the grid where different bits go.
+                 */ "h h h" 10% /* 10% is the "height" of this first row. */
+                "l c r" 1fr / 2fr 5fr 3fr /* the slash separates the "rows" from the columns, here, we have the left thinner than the right.*/;
+      /*
+          The fr unit is a "fractional unit" and is a content aware unit.
+          It'll always be at least minimum width of the column, but up to its ratio of units.
+          You can mix different units on the same line and fractional units use "the remainder" of the more
+          reified units like % or px.
+      */
+      gap: 1em;
+      /* Gap is the "gutters" between the cells. An alternative to this is two values for between rows and between columns.*/
+      box-sizing: border-box;
+    }
+
+    .left-container {
+      grid-area: l; /* this is how you assign an element to one of the labeled areas in the template strings. */
+    }
+
+    .right-container {
+      grid-area: r;
+    }
+
+    .main-header {
+      grid-area: h;
+      padding: 1em;
+    }
+
+    .center-container {
+      grid-area: c;
+      padding: 2em;
+    }
+
+    .card {
+      padding: 3em;
+      background-color: blueviolet;
+      margin: 10%;
+      min-height: 4em;
+    }
+
+    .main-nav {
+      padding: 2em;
+    }
+
+    .main-nav li {
+      list-style-type: none;
+      background-color: dimgray;
+      margin: 0.5em;
+    }
+
+    .main-nav li.callout {
+      background-color: blueviolet;
+      font-size: 1.1em;
+    }
+
+    .main-nav a {
+      width: 100%;
+      height: 100%;
+      color: white;
+      text-decoration: none;
+      display: block;
+      padding: 1em;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      /* Bonus: how to respect dark mode. use 'light' if you default to dark. */
+      body {
+        background-color: black;
+        color: whitesmoke;
+      }
+    }
+  </style>
+</head>
+<body>
+<header class="main-header">
+  <h1>
+    My Cool Website Longer and Longer
+  </h1>
+</header>
+<div class="left-container">
+  <!--
+  This doesn't need to be an actual div, any block element works.
+  The left column is often your nav, so <nav> also works.
+  -->
+  <ul class="main-nav">
+    <li class="callout"><a href="/">Steal This Website (Go back!)</a></li>
+    <li><a href="#">Not a real Link</a></li>
+    <li><a href="#">Not a real link</a></li>
+    <li><a href="#">Not a real link</a></li>
+    <li><a href="#">Not a real link</a></li>
+  </ul>
+</div>
+<div class="center-container">
+  <article>
+    <header>
+      <h2>My Blog Post</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+        et dolore magna aliqua. Eget est lorem ipsum dolor. Sed viverra tellus in hac habitasse platea
+        dictumst. Urna molestie at elementum eu facilisis sed odio morbi quis. Nulla facilisi nullam
+        vehicula ipsum a. Arcu non sodales neque sodales ut etiam sit. Sit amet nisl purus in mollis.
+        Adipiscing diam donec adipiscing tristique risus. Ante in nibh mauris cursus mattis. Aliquam purus
+        sit amet luctus venenatis lectus. Amet est placerat in egestas erat imperdiet sed euismod. Nascetur
+        ridiculus mus mauris vitae ultricies leo integer malesuada nunc. Ac turpis egestas maecenas pharetra
+        convallis posuere morbi leo. Nulla pharetra diam sit amet nisl suscipit adipiscing. Faucibus in
+        ornare quam viverra orci sagittis. Eget mi proin sed libero. Diam sit amet nisl suscipit adipiscing.
+        Ac odio tempor orci dapibus ultrices in. Aliquet risus feugiat in ante metus dictum at tempor
+        commodo.
+      </p>
+      <p>
+        Arcu felis bibendum ut tristique et egestas quis ipsum suspendisse. Purus faucibus ornare
+        suspendisse sed nisi lacus sed viverra tellus. Mauris vitae ultricies leo integer malesuada nunc.
+        Dui nunc mattis enim ut. Dis parturient montes nascetur ridiculus mus mauris vitae. Lectus nulla at
+        volutpat diam ut. Tellus orci ac auctor augue mauris augue neque gravida in. Varius duis at
+        consectetur lorem donec massa. Pellentesque diam volutpat commodo sed egestas egestas fringilla.
+        Aliquam sem fringilla ut morbi tincidunt augue interdum. Neque vitae tempus quam pellentesque nec
+        nam aliquam. Aliquam etiam erat velit scelerisque in. Nulla porttitor massa id neque. Bibendum est
+        ultricies integer quis auctor elit sed. Sed libero enim sed faucibus. Semper eget duis at tellus at
+        urna condimentum mattis. Vehicula ipsum a arcu cursus vitae congue mauris rhoncus aenean. Volutpat
+        maecenas volutpat blandit aliquam.
+      </p>
+    </header>
+  </article>
+</div>
+<div class="right-container">
+  <div class="card">Some cool card</div>
+  <div class="card">An ad block?</div>
+</div>
+</body>
+</html>
