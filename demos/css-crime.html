@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CSS Crimes</title>
+    <style>
+      .crimes-container {
+        height: 50vh;
+        width: 50vw;
+        margin: 25vh 25vw;
+        padding: 1em;
+        border: 5px solid black;
+        contain: strict;
+        overflow: hidden;
+      }
+
+      @supports (overflow: clip) {
+        .crimes-container {
+          overflow: clip;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="crimes-container">
+      <div style="width: 100vw; height: 100vh; background-color: red; position: absolute; right: 50px"></div>
+    </div>
+  </body>
+</html>
