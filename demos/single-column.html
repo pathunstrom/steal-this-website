@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="A simple single column layout.">
+  <title>Steal This Single Column Layout</title>
+  <style>
+    :root {
+      /* The root rule is special, it applies to the whole document. We're going to set some global values here. */
+      /* Below is a bunch of colors. We'll use them for various parts of the layout. */
+      --brand-color: hsl(120 45% 50%);  /* --brand-color is a custom property. We can use the css var function to access its value elsewhere. */
+      --light-brand-color: hsl(120 90% 95%);
+      --dark-brand-color: hsl(120 25% 25%);
+      --contrast-color: hsl(300 30% 50%);
+      --light-contrast-color: hsl(300 70% 95%);
+      --dark-contrast-color: hsl(300 15% 25%);
+
+      /*
+        Want to experiment with colors on this page?
+        I suggest using https://hslpicker.com/ to find a color you're happy with
+        and modifying the second two values in the hsl definition to get lighter and darker version.
+       */
+
+      /* Now basic color scheme info */
+      color-scheme: light dark;
+      background-color: light-dark(var(--light-contrast-color), var(--dark-contrast-color));
+      /*
+        The light-dark function interacts with the browser color scheme.
+        It allows us to define the light value and dark value in one line.
+        Here, we combine it with our predefined brand colors to make the background our contrast colors.
+
+        This also demonstrates using the custom properties defined earlier.
+       */
+      color: light-dark(var(--dark-brand-color), var(--brand-color));
+      font: 16pt sans-serif;
+      box-sizing: border-box;
+      /*
+        Box sizing lets you change how the width and height of an element are calculated.
+        border-box let's you set that to including the padding box and border box in the calculation.
+        The default only includes the content box, which is why sizing can feel weird by default.
+        */
+    }
+
+    body {
+      /* I'm resetting the boxes on the body, so I have better control over the amount of space for things in the body. */
+      padding: 0;
+      margin: 0;
+    }
+
+    .main-header {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: 1em 0;
+
+      img {
+        /* This is cool, this img rule inside of the .main-header rule is treated as `.main-header img` at the top level. */
+        margin: 0 auto;
+        width: auto; /* Our image is square, so setting width or height to auto let's it scale based on the other value. */
+        height: 8em; /* Even images can be set to flexible units. This will be "approximately 8 units tall". */
+        background-color: var(--brand-color);
+      }
+
+      nav ul {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        flex-direction: column;
+        list-style: none;
+        margin: 0.5rem;
+        padding: 0;
+        gap: 0.5em;
+
+        li {
+          text-align: left;
+        }
+
+        a {
+          display: block;
+          width: 20ch; /* ch units are "character" units. Approximately 1 letter per unit. */
+          padding: 1em;
+          background-color: light-dark(var(--brand-color), var(--dark-brand-color));
+          color: light-dark(var(--contrast-color), var(--light-contrast-color));
+          border-radius: 20px;
+          margin: 0 auto;
+        }
+
+        a:visited {
+          color: light-dark(var(--dark-contrast-color), var(--contrast-color));
+        }
+      }
+    }
+
+    main {
+      max-width: 70ch;
+      margin: 1rem auto;
+      padding: 0 0.5rem;
+
+      h1, h2 {
+        letter-spacing: 0.1rem;
+      }
+
+      p {
+        padding: 0 1rem;
+        line-height: 1.5rem;
+      }
+    }
+
+    footer {
+      font-variant: small-caps;
+      font-size: 0.8rem;
+      padding: 2rem;
+    }
+
+    @media screen and (min-width: 900px) {
+      .main-header {
+        nav ul {
+          flex-direction: row;
+        }
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="main-header">
+    <img class="main-logo" src="/static/img/spiral-logo-concept.svg" width="200" height="200" alt="A sample spiral logo">
+    <!-- Logo file obtained from https://openclipart.org/detail/328239/spiral-logo-concept -->
+    <nav class="main-nav">
+      <ul>
+        <li><a href="/">Steal This Website</a></li>
+        <li><a href="#">A Second Nav Item</a></li>
+        <li><a href="#">Nav 3</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <h1>Steal this Single Column Layout</h1>
+    <p>This is a sample single column layout.</p>
+    <p>The top of the page is a header that includes a centered logo and a nav element.</p>
+    <p>This body is where we put text and is wrapped in a main element.</p>
+    <p>
+      The footer can contain all sorts of things.
+      It's common to put links to things like copyright information,
+      author information,
+      links to privacy policies,
+      or site maps.
+    </p>
+    <p>
+      While this includes some interesting flourishes (the nav buttons, the centered logo), it is effectively a styled version of our "normal" no style website.
+    </p>
+    <section class="empty-content">
+      <h2>Design Filler</h2>
+      <p>
+        This section is likely not useful to read. I am using it here as a form of filler content.
+        The famous version of filler content is known as lorem ipsum.
+        I would like my design filler to be semantically correct but largely useless.
+        The sentences are different lengths.
+        Most of this is to see how decisions like run width affect the final design by showing the varied ways text is used.
+        Yes, that last sentence is intentionally long.
+      </p>
+      <p>
+        This section is likely not useful to read. I am using it here as a form of filler content.
+        The famous version of filler content is known as lorem ipsum.
+        I would like my design filler to be semantically correct but largely useless.
+        The sentences are different lengths.
+        Most of this is to see how decisions like run width affect the final design by showing the varied ways text is used.
+        Yes, that last sentence is intentionally long.
+      </p>
+      <p>
+        This section is likely not useful to read. I am using it here as a form of filler content.
+        The famous version of filler content is known as lorem ipsum.
+        I would like my design filler to be semantically correct but largely useless.
+        The sentences are different lengths.
+        Most of this is to see how decisions like run width affect the final design by showing the varied ways text is used.
+        Yes, that last sentence is intentionally long.
+      </p>
+    </section>
+  </main>
+  <footer>
+    This is a sample footer message.
+  </footer>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS Animations on Steal This Website</title>
+  <meta name="description" content="CSS animations">
+  <style>
+    :root {
+      color-scheme: light dark;
+    }
+
+    @keyframes background-shift {
+      25% {
+        background-color: light-dark(red, darkred);
+      }
+
+      50% {
+        background-color: light-dark(green, darkgreen);
+      }
+
+      75% {
+        background-color: light-dark(blue, darkblue);
+      }
+
+    }
+
+    .custom-background {
+      background-color: light-dark(darkorchid, indigo);
+    }
+
+    div {
+      height: 25vh;
+      margin-bottom: 5vh;
+    }
+
+    div:hover {
+      animation: 4s linear background-shift;
+    }
+  </style>
+</head>
+<body>
+  <div>
+
+  </div>
+  <div class="custom-background">
+
+  </div>
+</body>
+</html>
