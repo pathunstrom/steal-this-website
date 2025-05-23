@@ -27,3 +27,8 @@ jobs:
       with:
         domain: stealthiswebsite.art
         root: .
+    - name: Upload WWW
+      uses: teahouse-hosting/upload@trunk
+      with:
+        domain: www.stealthiswebsite.art
+        root: .
