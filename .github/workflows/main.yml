@@ -17,7 +17,7 @@ jobs:
   publish:
     environment:
       name: teahouse
-      url: https://example.teahouse.page
+      url: https://stealthiswebsite.art
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
