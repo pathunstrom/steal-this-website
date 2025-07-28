@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Experiment with color-scheme and light-dark</title>
+  <meta name="description" content="Experimenting with setting your color scheme on the document, via class, and using a JS selector.">
+  <style>
+    :root {
+      color-scheme: light dark;
+    }
+    * {
+      /* The following attributes are to make the document look more pleasant. Not relevant to the demo. */
+      padding: 0.2em;
+      border-radius: 10px;
+    }
+
+    body, section {
+      /*
+      In order to have reactive sections of your document, you have to set the light-dark values on them specifically.
+      Inherited values default to "transparent" and will use the color of their parent, which isn't being set.
+      Here, we set the body to what we want,
+      then also include section since the document uses subsections to set to one or the other intentionally.
+       */
+      background-color: light-dark(white, black);
+      color: light-dark(black, white);
+    }
+
+    .light-only {
+      color-scheme: only light
+    }
+
+    .dark-only {
+      color-scheme: only dark;
+    }
+
+    button {
+      /* Minimum hit target for accessibility is 44 css px in both dimensions. */
+      min-height: 44px;
+      min-width: 88px;
+    }
+  </style>
+</head>
+<body>
+  <h1>
+    light-dark and Forcing Color Scheme
+  </h1>
+  <p>
+    This demo is experimenting with the CSS color-scheme.
+    As you can see, it has blocks that default to light or dark, and a reactive JS component.
+  </p>
+  <nav>
+    <a href="/">Go Home</a>
+  </nav>
+  <section>
+    <h2>Default</h2>
+    <p>This section matches the color scheme selected by your browser.</p>
+  </section>
+  <section class="light-only">
+    <h2>Light</h2>
+    <p>This section should only be light mode, regardless of your browser settings.</p>
+  </section>
+  <section class="dark-only">
+    <h2>Dark</h2>
+    <p>This section should only be in dark mode, regardless of your browser settings.</p>
+  </section>
+  <section  id="js-settable">
+    <!-- Using color scheme directly doesn't preclude setting via a javascript button. -->
+    <h2>JS Settable</h2>
+    <p>This section should respond to the following button controls.</p>
+    <noscript>This section requires javascript to function. You can view the script in the source before enabling.</noscript>
+    <button type="button" id="default">Default</button>
+    <button type="button" id="dark-button">Dark</button>
+    <button type="button" id="light-button">Light</button>
+    <script>
+      /*
+        We're using `getElementByID` because it's built into the browser.
+        The platform equivalent to the jQuery syntax is `document.querySelector`.
+
+        classList.remove is safe to call if a class isn't on an element.
+        You can use `add` to safely add a class, and `toggle` adds it if it doesn't exist and removes it if it does.
+      */
+      let section = document.getElementById("js-settable")
+      document.getElementById("default").addEventListener("click", ()=>{
+        section.classList.remove("light-only")
+        section.classList.remove("dark-only")
+      })
+      document.getElementById("dark-button").addEventListener("click", ()=>{
+        section.classList.remove("light-only")
+        section.classList.add("dark-only")
+      })
+      document.getElementById("light-button").addEventListener("click", ()=>{
+        section.classList.remove("dark-only")
+        section.classList.add("light-only")
+      })
+    </script>
+  </section>
+</body>
+</html>
