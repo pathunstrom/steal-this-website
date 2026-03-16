@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Experiment with color-scheme and light-dark</title>
+  <meta name="description" content="Experimenting with setting your color scheme on the document, via class, and using a JS selector.">
+  <style>
+    :root {
+      color-scheme: light dark;
+    }
+
+    * {
+      /* The following attributes are to make the document look more pleasant. Not relevant to the demo. */
+      padding: 0.5em;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>
+    Experimenting with Event Handlers
+  </h1>
+  <nav>
+    <a href="/">Go Home</a>
+  </nav>
+  <section id="display">
+    No button has been pressed.
+  </section>
+  <section id="buttons">
+    <button type=button data-number="1">I am button 1</button>
+  </section>
+  <button type=button id="create-button">Create new button.</button>
+  <script>
+    let nextId = 2
+    let display = document.getElementById("display")
+    let buttonContainer = document.getElementById("buttons")
+    buttonContainer.addEventListener("click", (e) => {
+      console.log(e.target.type)
+    })
+  </script>
+</body>
+</html>
